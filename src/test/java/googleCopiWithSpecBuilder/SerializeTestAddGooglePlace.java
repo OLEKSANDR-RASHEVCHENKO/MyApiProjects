@@ -38,13 +38,12 @@ public class SerializeTestAddGooglePlace {
                 .setContentType(ContentType.JSON).build();
 
         ResponseSpecification response1 =new ResponseSpecBuilder().expectStatusCode(200).expectContentType(ContentType.JSON).build();
-
-
-
         RequestSpecification res=given().spec(requestSpecification).log().all()
                 .body(addPlace);
+
                 Response response=res.when().post("/maps/api/place/add/json")
                 .then().spec(response1).extract().response();
+
         String responseAsString = response.asString();
         System.out.println(responseAsString);
 
